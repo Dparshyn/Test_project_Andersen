@@ -56,7 +56,6 @@ function deleteTask() {
 }
 
 function editTask() {
-
     let editButton = this;
     let listItem = this.parentNode;
     let label = listItem.querySelector('label');
