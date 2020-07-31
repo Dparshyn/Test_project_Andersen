@@ -1,12 +1,12 @@
-var addButton = document.getElementById('add');
-var inputTask = document.getElementById('new-task');
-var unfinishedTasks = document.getElementById('unfinished-tasks');
-var finishedTasks = document.getElementById('finished-tasks');
+let addButton = document.getElementById('add');
+let inputTask = document.getElementById('new-task');
+let unfinishedTasks = document.getElementById('unfinished-tasks');
+let finishedTasks = document.getElementById('finished-tasks');
 
 
 function createNewElement(task, finished) {
-    var listItem = document.createElement('li');
-    var checkbox = document.createElement('button');
+    let listItem = document.createElement('li');
+    let checkbox = document.createElement('button');
 
     if(finished){
         checkbox.className = "material-icons checkbox";
@@ -17,14 +17,14 @@ function createNewElement(task, finished) {
     }
 
 
-    var label = document.createElement('label');
+    let label = document.createElement('label');
     label.innerText = task;
-    var input = document.createElement('input');
+    let input = document.createElement('input');
     input.type = "text";
-    var editButton = document.createElement('button');
+    let editButton = document.createElement('button');
     editButton.className = "material-icons edit";
     editButton.innerHTML = "<i class='material-icons'>edit</i>";
-    var deleteButton = document.createElement('button');
+    let deleteButton = document.createElement('button');
     deleteButton.className = "material-icons delete";
     deleteButton.innerHTML = "<i class='material-icons'>delete</i>";
 
@@ -39,7 +39,7 @@ function createNewElement(task, finished) {
 
 function addTask() {
     if (inputTask.value) {
-        var listItem = createNewElement(inputTask.value, false);
+        let listItem = createNewElement(inputTask.value, false);
         unfinishedTasks.appendChild(listItem);
         bindTaskEvents(listItem, finishTask)
         inputTask.value = "";
@@ -49,20 +49,20 @@ function addTask() {
 addButton.onclick = addTask;
 
 function deleteTask() {
-    var listItem = this.parentNode;
-    var ul = listItem.parentNode;
+    let listItem = this.parentNode;
+    let ul = listItem.parentNode;
     ul.removeChild(listItem);
     save();
 }
 
 function editTask() {
     console.log(2);
-    var editButton = this;
-    var listItem = this.parentNode;
-    var label = listItem.querySelector('label');
-    var input = listItem.querySelector('input[type=text]');
+    let editButton = this;
+    let listItem = this.parentNode;
+    let label = listItem.querySelector('label');
+    let input = listItem.querySelector('input[type=text]');
 
-    var containsClass = listItem.classList.contains('editMode');
+    let containsClass = listItem.classList.contains('editMode');
 
     if (containsClass) {
         label.innerText = input.value;
@@ -79,8 +79,8 @@ function editTask() {
 }
 
 function finishTask() {
-    var listItem = this.parentNode;
-    var checkbox = listItem.querySelector('button.checkbox');
+    let listItem = this.parentNode;
+    let checkbox = listItem.querySelector('button.checkbox');
     checkbox.className = "material-icons checkbox";
     checkbox.innerHTML = "<i class='material-icons'>check_box</i>";
     finishedTasks.appendChild(listItem);
@@ -89,8 +89,8 @@ function finishTask() {
 }
 
 function unfinishTask() {
-    var listItem = this.parentNode;
-    var checkbox = listItem.querySelector('button.checkbox');
+    let listItem = this.parentNode;
+    let checkbox = listItem.querySelector('button.checkbox');
     checkbox.className = "material-icons checkbox";
     checkbox.innerHTML = "<i class='material-icons'>check_box_outline_blank</i>";
 
@@ -100,9 +100,9 @@ function unfinishTask() {
 }
 
 function bindTaskEvents(listItem, checkboxEvent) {
-    var checkbox = listItem.querySelector('button.checkbox');
-    var editButton = listItem.querySelector('button.edit');
-    var deleteButton = listItem.querySelector('button.delete');
+    let checkbox = listItem.querySelector('button.checkbox');
+    let editButton = listItem.querySelector('button.edit');
+    let deleteButton = listItem.querySelector('button.delete');
 
     checkbox.onclick = checkboxEvent;
     editButton.onclick = editTask;
@@ -111,13 +111,13 @@ function bindTaskEvents(listItem, checkboxEvent) {
 }
 function save() {
 
-    var unfinishedTasksArr = [];
-    for (var i = 0; i < unfinishedTasks.children.length; i++) {
+    let unfinishedTasksArr = [];
+    for (let i = 0; i < unfinishedTasks.children.length; i++) {
         unfinishedTasksArr.push(unfinishedTasks.children[i].getElementsByTagName('label')[0].innerText);
     }
 
-    var finishedTasksArr = [];
-    for (var i = 0; i < finishedTasks.children.length; i++) {
+    let finishedTasksArr = [];
+    for (let i = 0; i < finishedTasks.children.length; i++) {
         finishedTasksArr.push(finishedTasks.children[i].getElementsByTagName('label')[0].innerText);
     }
 
@@ -133,16 +133,16 @@ function load(){
     return JSON.parse(localStorage.getItem('todo'));
 }
 
-var data=load();
+let data=load();
 
-for(var i=0; i<data.unfinishedTasks.length;i++){
-    var listItem=createNewElement(data.unfinishedTasks[i], false);
+for(let i=0; i<data.unfinishedTasks.length;i++){
+    let listItem=createNewElement(data.unfinishedTasks[i], false);
     unfinishedTasks.appendChild(listItem);
     bindTaskEvents(listItem, finishTask);
 }
 
-for(var i=0; i<data.finishedTasks.length; i++){
-    var listItem=createNewElement(data.finishedTasks[i], true);
+for(let i=0; i<data.finishedTasks.length; i++){
+    let listItem=createNewElement(data.finishedTasks[i], true);
     finishedTasks.appendChild(listItem);
     bindTaskEvents(listItem, unfinishTask);
 }
