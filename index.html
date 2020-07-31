@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TODO List</title>
+    <link rel="stylesheet" href="material-icons.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
+</head>
+<body>
+<div id="root">
+    <div class="container">
+        <script type="text/javascript">
+            let d = new Date();
+            document.write(d.toUTCString());
+            </script>
+        <h3>Add Task</h3>
+        <input id="new-task" type="text">
+        <button id="add">ADD</button>
+        <h3>Tasks List</h3>
+        <ul id="unfinished-tasks">
+        </ul>
+
+        <h3>Completed Tasks</h3>
+        <ul id="finished-tasks">
+        </ul>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
